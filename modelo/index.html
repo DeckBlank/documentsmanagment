@@ -1,0 +1,61 @@
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email https://www.googleapis.com/auth/script.projects">
+    <meta name="google-signin-client_id" content="580294002649-ogl6th6qivso919anlfou3reucbo7gd5.apps.googleusercontent.com">
+
+  </head>
+  <body>
+    <div class="g-signin2" id="xyz" style="width:400px" data-theme="dark" ></div>
+    <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
+    <button id="bsalir">Salir</button>
+    <script>
+      function salir(event){
+        gapi.auth2.getAuthInstance().signOut();
+      }
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+      function handleClientLoad(){
+        console.log(gapi)
+        gapi.load('auth2',()=>{
+          gapi.auth2.init().then((auth2) => {
+            if(auth2.currentUser.get().getBasicProfile()){
+             // this.cargado=false
+              console.log('hay login ');
+              // this.hayUsuario(auth2.currentUser.get())
+              let profile = auth2.currentUser.get().getBasicProfile();
+              let token = auth2.currentUser.get().getAuthResponse().id_token;
+              console.log(token);
+            }else{
+              cargado = true
+            }
+            auth2.attachClickHandler(document.querySelector('#xyz'),{},(googleUser)=>{
+            console.log("aqui morimos");
+            var profile = googleUser.getBasicProfile();
+            let token = googleUser.getAuthResponse().id_token;
+            console.log(token,profile)
+            })
+        });
+      })
+        bsalir.onclick = salir
+
+      }
+    </script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer
+    onload="this.onload=function(){};handleClientLoad();console.log('cargamos')"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()"
+
+
+    ></script>
+  </body>
+</html>

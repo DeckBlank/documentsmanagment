@@ -1,0 +1,37 @@
+{
+  "name": "notificador",
+  "version": "1.0.0",
+  "description": "aplicacion para notificar",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./bin/www.js --exec babel-node",
+    "prod": "babel-node ./bin/www.js"
+  },
+  "author": "Jose Luciano Guzman Santiago",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "google-spreadsheet": "^3.0.13",
+    "googleapis": "^59.0.0",
+    "helmet": "^3.23.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.23",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.11",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "pdf-creator-node": "^1.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "nodemon": "^2.0.4"
+  },
+  "bin": {
+    "notificator3": "www.js"
+  }
+}

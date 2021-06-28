@@ -1,0 +1,7 @@
+node_modules/*
+recursos/*
+credentials/*
+./.env
+output/*
+output2/*
+.env
